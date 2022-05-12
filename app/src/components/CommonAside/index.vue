@@ -26,10 +26,8 @@
       :key="menu.path"
     >
       <template slot="title">
-        <div @click="changeColor" >
           <i :class="'el-icon-' + menu.meta.icon"></i>
-          <span slot="title" :style="isColor ? 'color:#ffd04b;':'color:#fff;' ">{{menu.meta.label}}</span>
-        </div>
+          <span slot="title">{{menu.meta.label}}</span>
       </template>
       <el-menu-item-group v-for="child in menu.children" :key="child.path">
 
@@ -48,7 +46,7 @@ export default {
   data() {
     return {
       isCollapse: false,
-      isColor: false,
+      // isColor: false,
       menu: [
         {
           path: "/",
@@ -121,10 +119,10 @@ export default {
       })
     },
     // 改变有children路由的字体颜色
-    changeColor(){
-      this.isColor = !this.isColor;
-      // console.log(this.isColor);
-    }
+    // changeColor(){
+    //   this.isColor = !this.isColor;
+    //   // console.log(this.isColor);
+    // }
 
   },
   computed:{
