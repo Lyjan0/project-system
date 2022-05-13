@@ -10,7 +10,8 @@
     text-color="#fff"
     active-text-color="#ffd04b"
   >
-    <h3>后台管理系统</h3>
+    <h3>{{isCollapse?'后台':'后台管理系统'}}</h3>
+
     <el-menu-item
       v-for="menu in noChildren"
       :key="menu.path"
@@ -45,7 +46,7 @@ export default {
   name: "CommonAside",
   data() {
     return {
-      isCollapse: false,
+      // isCollapse: this.$store.state.aside.isCollapse,
       // isColor: false,
       menu: [
         {
@@ -126,24 +127,35 @@ export default {
 
   },
   computed:{
+    // 筛选不带children的路由
     noChildren(){
       return this.menu.filter(item => !item.children);
     },
+    // 筛选带children的路由
     hasChildren(){
       return this.menu.filter(item => item.children);
+    },
+    // 计算控制aside的展开的值
+    isCollapse(){
+      return this.$store.state.aside.isCollapse;
     }
   }
 };
 </script>
 
 <style lang="less">
+.el-menu{
+  border: none;
+}
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
-  min-height: 100vh;
+  height: 100vh;
   border: none;
 }
 .el-menu-vertical-demo h3{
   padding-left: 20px;
+  margin-top: 15px;
   color: #fff;
+  height: 20px;
 }
 </style>

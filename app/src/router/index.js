@@ -12,11 +12,13 @@ let routes = [
     path:'/',
     name:'layout',
     component: () => import('../views/Layout'),
+    redirect:'/home',
     children:[
       {
         path:'home',
         name:'home',
-        component: () => import('../views/Home')
+        component: () => import('../views/Home'),
+
       },
       {
         path:'user',
